@@ -1,7 +1,7 @@
 package reactnative.hotspot;
 
 import android.net.wifi.WifiConfiguration;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.telecom.Call;
 
 import com.facebook.react.bridge.Arguments;
@@ -100,12 +100,27 @@ public class HotspotModule extends ReactContextBaseJavaModule implements Lifecyc
     }
 
     @ReactMethod
+    public void checkPermission(Callback success) {
+        success.invoke(hotspot.checkPermission());
+    }
+
+    @ReactMethod
+    public void getWritePermissionSettings(){
+        hotspot.getWritePermissionSettings();
+    }
+
+    @ReactMethod
     public void enable(Callback success, Callback error) {
         if(hotspot.isEnabled()) {
             success.invoke();
         }
         else
             error.invoke("Hotspot already running");
+    }
+
+    @ReactMethod
+    public void checkStatus(Callback status) {
+        status.invoke(hotspot.checkStatus());
     }
 
     @ReactMethod
@@ -168,4 +183,5 @@ public class HotspotModule extends ReactContextBaseJavaModule implements Lifecyc
             }
         });
     }
+    
 }

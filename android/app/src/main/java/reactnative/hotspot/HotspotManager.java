@@ -27,6 +27,14 @@ public class HotspotManager {
         wifi.showWritePermissionSettings(false);
     }
 
+    public void getWritePermissionSettings() {
+        wifi.getWritePermissionSettings();
+    }
+
+    public boolean checkPermission() {
+        return wifi.checkPermission();
+    }
+
     public boolean isEnabled() {
         if(!wifi.isWifiApEnabled()) {
             wifi.setWifiApEnabled(null, true);
@@ -43,6 +51,9 @@ public class HotspotManager {
             return false;
         }
     }
+    public boolean checkStatus() {
+        return wifi.isWifiApEnabled();
+    }    
     public boolean isCreated(ReadableMap info) {
         if(wifi.isWifiApEnabled()) {
             WifiConfiguration config = new WifiConfiguration();
